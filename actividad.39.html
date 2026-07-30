@@ -1,0 +1,26 @@
+<script>
+  //TypeError: Pasa cuando un dato no es del tipo esperado o usas un método en un valor incorrecto (como null).  
+    try {
+  const numero = 55;
+  numero.toUpperCase();
+} catch (error) {
+  console.log(`${error.name}: ${error.message}`);
+}
+
+
+
+//RangeError: Se da si un número está fuera del rango permitido, por ejemplo, en la longitud de un arreglo.
+try {
+  const array = new Array(-10);
+} catch (error) {
+  console.log(`${error.name}: ${error.message}`);
+}
+
+
+//SyntaxError: Ocurre cuando escribes código mal formado que el programa no puede leer.
+try {
+  eval("if (true) { console.log('Falta cerrar el paréntesis' "); // Falta '}' y ')'
+} catch (error) {
+  console.log(`${error.name}: ${error.message}`);
+}
+</script>

@@ -1,0 +1,67 @@
+<script>
+  class ValidacionError extends Error {
+    constructor(mensaje) {
+      super(mensaje);
+      this.name = "ValidacionError";
+    }
+  }
+
+  
+  function validarFormulario(nombre, correo) {
+    
+    if (!nombre || nombre.trim() === "") {
+      throw new ValidacionError("¡El campo 'nombre' es obligatorio!.");
+    }
+
+    
+    if (nombre.trim().length < 3) {
+      throw new ValidacionError("¡El nombre debe tener minimo 3 caracteres!.");
+    }
+
+    
+    if (!correo || correo.trim() === "") {
+      throw new ValidacionError("¡El campo 'correo' es obligatorio!.");
+    }
+
+    
+    const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!patronCorreo.test(correo.trim())) {
+      throw new ValidacionError("¡El correo electrónico no tiene un formato válido (ejemplo@dominio.com).!");
+    }
+
+    
+    return {
+      exito: true,
+      mensaje: "¡Formulario validado con éxito!",
+      datos: { nombre: nombre.trim(), correo: correo.trim() }
+    };
+  }
+
+  
+
+  function probarValidacion(nombre, correo) {
+    try {
+      const resultado = validarFormulario(nombre, correo);
+      console.log("Éxito:", resultado.mensaje, resultado.datos);
+    } catch (error) {
+      if (error instanceof ValidacionError) {
+        console.error(` Error de Validación [${error.name}]: ${error.message}`);
+      } else {
+        console.error(" Error inesperado del sistema:", error);
+      }
+    }
+  }
+
+
+  console.log(" Pirmera Comprobación: Todo correcto");
+  probarValidacion("Lesly Lopez", "LesLopez@gmail.com");
+
+  console.log("\n Segunda Comprobación: Nombre muy corto");
+  probarValidacion("Ma", "correo@gmail.com");
+
+  console.log("\n Tercera Comprobación: Correo inválido");
+  probarValidacion("Luciana", "luciana-correo-invalido");
+
+  console.log("\n Cuarta comprobación: Campos vacíos");
+  probarValidacion("", "");
+</script>

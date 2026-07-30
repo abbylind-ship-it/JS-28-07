@@ -1,0 +1,13 @@
+<script>  
+    function crearGeneradorID() {
+        let contador = 0;
+        return function() {
+            contador++;
+            return contador;
+        };
+    }
+    const generadorID = crearGeneradorID();
+    console.log(generadorID()); 
+    console.log(generadorID()); 
+    console.log(generadorID()); 
+</script>
