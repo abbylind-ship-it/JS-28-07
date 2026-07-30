@@ -1,0 +1,17 @@
+<script>
+const carrito = {
+  usuario: "Lin",
+  productos: [
+    { nombre: "Camiseta", precio: 20 },
+    { nombre: "Pantalón", precio: 45 },
+    { nombre: "Zapatos", precio: 60 }
+  ]
+};
+
+const total = carrito.productos.reduce((acumulado, producto) => {
+  return acumulado + producto.precio;
+}, 0);
+
+console.log(`Este es el valor total: $${total}`);
+
+</script>
